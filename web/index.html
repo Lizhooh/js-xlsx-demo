@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>js-xlsx-demo</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="author" content="lizhooh">
+
+    <link href="https://cdn.bootcss.com/github-markdown-css/2.8.0/github-markdown.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="./src/app.css" />
+</head>
+<body class="main">
+    <header>
+        <div class="title">js-xlsx 简单 demo</div>
+        <img src='./src/logo.png' alt='logo' class="logo" />
+    </header>
+
+    <section class="import">
+        <p class="title">拖拽文件，导入 Excel 数据</p>
+        <div id='drop'>把 Excel 文件拖拽到这个区域里！</div>
+        <p class="title">上传文件，导入 Excel 数据</p>
+        <form>
+            <label for="file" id="import-file">+</label>
+            <input type="file" id="file" style="display: none"
+                accept="application/vnd.ms-excel,application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
+                />
+        </form>
+        <p class="title">上传的 Excel 数据</p>
+        <div id="excel-view"></div>
+    </section>
+
+    <section class="export">
+        <p class="title">自定义 Excel 数据</p>
+        <div class="edit-view">
+            <textarea name="edit" id="edit"></textarea>
+            <div id='view' class="markdown-body"></div>
+        </div>
+        <p class="title">生成 Excel 文件</p>
+        <button id="derive">导出</button>
+    </section>
+
+    <footer></footer>
+
+    <script src="https://cdn.bootcss.com/xlsx/0.11.5/xlsx.full.min.js" async></script>
+    <script src="https://cdn.bootcss.com/FileSaver.js/1.3.3/FileSaver.min.js" async></script>
+    <script src="https://cdn.bootcss.com/marked/0.3.6/marked.min.js" async></script>
+    <script src="./src/app.js"></script>
+</body>
+
+</html>

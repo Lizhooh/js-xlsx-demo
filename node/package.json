@@ -1,0 +1,22 @@
+{
+  "name": "node-js-xlsx-demo",
+  "version": "1.0.0",
+  "description": "...",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "test": "null"
+  },
+  "repository": {
+    "type": "git",
+    "url": "null"
+  },
+  "keywords": [
+    "null"
+  ],
+  "author": "lizhooh",
+  "license": "ISC",
+  "dependencies": {
+    "xlsx": "^0.11.8"
+  }
+}
