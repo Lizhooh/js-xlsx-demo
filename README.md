@@ -5,6 +5,8 @@ Javascript 解析、导入、导出 Excel 文件小示例。包括了 web（仅�
 git clone https://github.com/Lizhooh/js-xlsx-demo.git
 ```
 
+![](./_/view.png)
+
 ## use
 
 **web:**
@@ -12,7 +14,7 @@ git clone https://github.com/Lizhooh/js-xlsx-demo.git
 ```bash
 cd web
 npm install -g serve
-serve ./
+serve ./ # open browser http://127.0.0.1:5000
 ```
 
 **nodejs:**
