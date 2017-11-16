@@ -14,11 +14,11 @@ window.onload = function () {
 
     var excelView = $('#excel-view');
 
-    /**
-     * 渲染数据
-     */
-    function render(element, filedata) {
 
+    /**
+     * 读取
+     */
+    function readExcelFile(filedata, cb) {
         // https://developer.mozilla.org/zh-CN/docs/Web/API/FileReader
         var reader = new FileReader();
 
@@ -39,11 +39,24 @@ window.onload = function () {
             console.log(wb);
 
             // 只取第一个 sheet
+            // var wsname = wb.SheetNames[0];
+            // var ws = wb.Sheets[wsname];
+            // 渲染
+            typeof cb === 'function' && cb(wb);
+        };
+    }
+
+    /**
+     * 渲染数据
+     */
+    function render(element, filedata) {
+        readExcelFile(filedata, function (wb) {
+            // 只取第一个 sheet
             var wsname = wb.SheetNames[0];
             var ws = wb.Sheets[wsname];
             // 渲染
             element.innerHTML = XLSX.utils.sheet_to_html(ws);
-        };
+        })
     }
 
     /**
@@ -120,15 +133,23 @@ window.onload = function () {
     // 根据表格内容，生成 Excel 文件
     derive.onclick = function (event) {
         var table = $('table', view);
-        var ws = XLSX.utils.table_to_sheet(table);
-        var wb = XLSX.utils.book_new();
-        XLSX.utils.book_append_sheet(wb, ws, "SheetJS");
+        var sheet = XLSX.utils.table_to_sheet(table);
+
+        sheet['A1'] = Object.assign(sheet['A1'], {
+            // 样式？
+            s: {
+                fill: {
+                    fgColor: { rgb: "FFFF0000" }
+                }
+            },
+        });
+
+        var wb = XLSX.utils.book_new({ cellStyles: true });
+        XLSX.utils.book_append_sheet(wb, sheet, "SheetJS");
         // 渲染
         var wbout = XLSX.write(wb, { type: "binary", bookType: "xlsx" });
         // 保存 - https://github.com/eligrey/FileSaver.js
         saveAs(new Blob([s2ab(wbout)], { type: "application/octet-stream" }), Date.now() + ".xlsx");
     }
 }
-
-
 
